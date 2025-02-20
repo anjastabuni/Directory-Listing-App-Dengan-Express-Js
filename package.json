@@ -1,0 +1,25 @@
+{
+  "name": "directory-listing-app-dengan-express-js",
+  "version": "1.0.0",
+  "description": "Belajar Membangun Aplikasi Studi Kasus Directory Listing App Dengan Express Js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anjastabuni/Directory-Listing-App-Dengan-Express-Js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anjastabuni/Directory-Listing-App-Dengan-Express-Js/issues"
+  },
+  "homepage": "https://github.com/anjastabuni/Directory-Listing-App-Dengan-Express-Js#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1"
+  }
+}
