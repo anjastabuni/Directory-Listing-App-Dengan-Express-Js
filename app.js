@@ -23,17 +23,17 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/seed/place", async (req, res) => {
-  const place = new Place({
-    title: "Empire State Building",
-    price: "$999999",
-    description: "A great building",
-    location: "New York, NY",
-  });
+// app.get("/seed/place", async (req, res) => {
+//   const place = new Place({
+//     title: "Empire State Building",
+//     price: "$999999",
+//     description: "A great building",
+//     location: "New York, NY",
+//   });
 
-  await place.save();
-  res.send(place);
-});
+//   await place.save();
+//   res.send(place);
+// });
 
 app.listen(3000, () => {
   console.log(`server is running on http://127.0.0.1:3000`);

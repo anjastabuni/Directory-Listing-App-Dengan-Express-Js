@@ -20,6 +20,7 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "here-maps": "^3.0.2",
     "mongoose": "^8.10.1"
   }
 }
