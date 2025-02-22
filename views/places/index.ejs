@@ -8,8 +8,8 @@
   <body>
     <h1>All Places</h1>
     <ul>
-      <% for(const palce of places) { %>
-      <li><%= palce.title %></li>
+      <% for(const place of places) { %>
+      <li><a href="/places/<%= place._id %>"><%= place.title %></a></li>
       <% } %>
     </ul>
   </body>
