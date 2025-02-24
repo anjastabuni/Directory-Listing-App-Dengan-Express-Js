@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BestPoint</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <%- body %>
+  <body class="flex flex-col min-h-screen">
+    <%- include("partials/nav") %>
+    <main class="container mx-auto flex-grow mt-10"><%- body %></main>
+
+    <%- include("partials/footer") %>
   </body>
 </html>

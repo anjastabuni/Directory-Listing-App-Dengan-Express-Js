@@ -1,5 +1,7 @@
 const ejsMate = require("ejs-mate");
 const express = require("express");
+const axios = require("axios");
+require("dotenv").config();
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -25,6 +27,23 @@ app.set("views", path.join(__dirname, "views"));
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+// Function to fetch image from Unsplash
+async function getUnsplashImage(query = "tourist destination") {
+  try {
+    const response = await axios.get("https://api.unsplash.com/photos/random", {
+      params: {
+        client_id: process.env.UNSPLASH_ACCESS_KEY,
+        query,
+        orientation: "landscape",
+      },
+    });
+    return response.data.urls.regular;
+  } catch (error) {
+    console.error("Error fetching Unsplash image:", error);
+    return "https://via.placeholder.com/1280x720"; // Placeholder if request fails
+  }
+}
 
 app.get("/", (req, res) => {
   res.render("home");

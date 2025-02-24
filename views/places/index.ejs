@@ -1,8 +1,9 @@
 <% layout('layouts/app') %>
-<h1>All Places</h1>
-<a href="/places/create">Add Place</a>
-<ul>
+<h1 class="text-xl mb-4">All Places</h1>
+<a href="/places/create" class="bg-blue-700 text-white p-2 rounded-lg hover:bg-blue-900">Add Place</a>
+
+<ul class="list-disc mt-10">
   <% for(const place of places) { %>
-  <li><a href="/places/<%= place._id %>"><%= place.title %></a></li>
+  <li><a href="/places/<%= place._id %>" class="hover:underline hover:decoration-dotted"><%= place.title %></a></li>
   <% } %>
 </ul>
