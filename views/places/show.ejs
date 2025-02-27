@@ -1,22 +1,29 @@
 <% layout('layouts/app') %>
-<div class="max-w-md">
-  <div>
-    <h1 class="text-xl font-semibold mb-1"><%= place.title %></h1>
-    <h2 class="text-base"><%= place.location %></h2>
-    <img src="<%= place.image %>" alt="" />
-    <p class="text-sm"><%= place.description %></p>
-  </div>
-  <div class="flex items-center mt-5">
-    <div class="me-2">
-      <form action="/places/<%= place._id %>?_method=DELETE" method="post" style="display: inline !important">
-        <button class="bg-red-400 px-2 py-1 rounded-md" type="submit">Delete</button>
-      </form>
-    </div>
-    <div class="me-2">
-      <a href="/places/<%= place._id %>/edit" class="bg-yellow-400 px-2 py-1 rounded-md">Edit</a>
-    </div>
-    <div class="me-2">
-      <a href="/places" class="px-2 py-1 outline-1 rounded-md">All Places</a>
-    </div>
+
+<div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6 border border-gray-200">
+  <!-- Title & Location -->
+  <h1 class="text-2xl font-bold text-gray-900 mb-1"><%= place.title %></h1>
+  <h2 class="text-base text-gray-600 mb-4">📍 <%= place.location %></h2>
+
+  <!-- Image -->
+  <img src="<%= place.image %>" alt="<%= place.title %>" class="w-full h-56 object-cover rounded-lg mb-4" />
+
+  <!-- Description -->
+  <p class="text-gray-700 text-sm leading-relaxed"><%= place.description %></p>
+
+  <!-- price -->
+  <h2 class="text-base text-gray-600 mt-4">🛌 <%= place.price %></h2>
+  <!-- Buttons -->
+  <div class="flex items-center gap-3 mt-6">
+    <!-- Delete Button -->
+    <form action="/places/<%= place._id %>?_method=DELETE" method="post">
+      <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition">Delete</button>
+    </form>
+
+    <!-- Edit Button -->
+    <a href="/places/<%= place._id %>/edit" class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md transition"> Edit </a>
+
+    <!-- Back to All Places -->
+    <a href="/places" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-md transition"> All Places </a>
   </div>
 </div>

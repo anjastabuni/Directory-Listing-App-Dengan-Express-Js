@@ -1,9 +1,20 @@
 <% layout('layouts/app') %>
-<h1 class="text-xl mb-4">All Places</h1>
-<a href="/places/create" class="bg-blue-700 text-white p-2 rounded-lg hover:bg-blue-900">Add Place</a>
 
-<ul class="list-disc mt-10">
+<h1 class="text-2xl font-bold mb-6 text-center">All Places</h1>
+
+<div class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
   <% for(const place of places) { %>
-  <li><a href="/places/<%= place._id %>" class="hover:underline hover:decoration-dotted"><%= place.title %></a></li>
+  <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
+    <!-- Gambar -->
+    <a href="/places/<%= place._id %>">
+      <img src="<%= place.image %>" class="w-full h-48 object-cover" alt="<%= place.title %>" />
+    </a>
+
+    <!-- Konten -->
+    <div class="p-4">
+      <h2 class="text-lg font-semibold mb-2"><%= place.title %></h2>
+      <p class="text-gray-700 text-sm"><%= place.description %></p>
+    </div>
+  </div>
   <% } %>
-</ul>
+</div>
