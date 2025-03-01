@@ -1,13 +1,13 @@
 <% layout('layouts/app') %>
 <div class="max-w-md m-auto">
   <h1 class="text-xl mb-4">Add Place</h1>
-  <form action="/places" method="post" id="placeForm">
+  <form action="/places" method="post" id="placeForm" novalidate>
     <div class="grid grid-cols-1 gap-x-4 gap-y-6">
       <div class="sm:col-span-3">
-        <label for="error-title" class="block">Title</label>
+        <label for="title" class="block">Title</label>
         <div class="mt-2">
-          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 border border-gray-300" name="place[title]" id="error-title" required />
-          <p class="text-red-500 text-sm mt-1 hidden" id="error-title">Judul wajib diisi</p>
+          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 border border-gray-300" name="place[title]" id="title" required />
+          <p class="hidden text-red-500 text-sm mt-1" id="error-title">Judul wajib diisi</p>
         </div>
       </div>
       <div class="sm:col-span-3">
