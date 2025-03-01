@@ -1,41 +1,72 @@
 <% layout('layouts/app') %>
 <div class="max-w-md m-auto">
   <h1 class="text-xl mb-4">Add Place</h1>
-  <form action="/places" method="post">
+  <form action="/places" method="post" id="placeForm">
     <div class="grid grid-cols-1 gap-x-4 gap-y-6">
       <div class="sm:col-span-3">
-        <label for="title" class="block">Title</label>
+        <label for="error-title" class="block">Title</label>
         <div class="mt-2">
-          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base bg-gray-900 outline-1" name="place[title]" id="title" />
+          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 border border-gray-300" name="place[title]" id="error-title" required />
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-title">Judul wajib diisi</p>
         </div>
       </div>
       <div class="sm:col-span-3">
         <label for="description" class="block">Description</label>
         <div class="mt-2">
-          <textarea class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 resize-none h-32" name="place[description]" id="description"></textarea>
+          <textarea class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 resize-none h-32 border border-gray-300" name="place[description]" id="description" required></textarea>
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-description">Deskripsi wajib diisi</p>
         </div>
       </div>
       <div class="col-span-3">
         <label for="location" class="block">Location</label>
-        <div class="mt-2"><input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base bg-gray-900 outline-1" name="place[location]" id="location" /></div>
+        <div class="mt-2">
+          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 border border-gray-300" name="place[location]" id="location" required />
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-location">Lokasi wajib diisi</p>
+        </div>
       </div>
       <div class="col-span-3">
         <label for="price" class="block">Price</label>
         <div class="mt-2">
-          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base bg-gray-900 outline-1" name="place[price]" id="price" />
+          <input type="text" class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 border border-gray-300" name="place[price]" id="price" required />
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-price">Price wajib diisi</p>
         </div>
       </div>
       <div class="col-span-3">
         <label for="image" class="block">Image URL</label>
         <div class="mt-2">
-          <input type="url" class="block w-full bg-white rounded-md px-3 py-1.5 text-base bg-gray-900 outline-1" name="place[image]" id="image" />
+          <input type="url" class="block w-full bg-white rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 border border-gray-300" name="place[image]" id="image" required />
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-image">Image URL wajib diisi</p>
         </div>
       </div>
       <div class="col-span-3">
         <div class="mt-2">
-          <button type="submit" class="block w-full bg-indigo-600 rounded-md px-3 py-2 text-sm font-semibold text-white">Save</button>
+          <button type="submit" class="block w-full bg-indigo-600 rounded-md px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Save</button>
         </div>
       </div>
     </div>
   </form>
 </div>
+
+<script>
+  document.getElementById("placeForm").addEventListener("submit", function (event) {
+    let valid = true;
+
+    document.querySelectorAll("#placeForm input, #placeForm textarea").forEach((input) => {
+      const errorMsg = document.getElementById("error-" + input.id);
+
+      if (errorMsg) {
+        // Pastikan elemen error ditemukan
+        if (!input.value.trim()) {
+          errorMsg.classList.remove("hidden");
+          valid = false;
+        } else {
+          errorMsg.classList.add("hidden");
+        }
+      }
+    });
+
+    if (!valid) {
+      event.preventDefault(); // Mencegah submit jika ada error
+    }
+  });
+</script>
