@@ -1,5 +1,6 @@
 const ejsMate = require("ejs-mate");
 const express = require("express");
+const ErrorHandler = require("./utils/ErrorHandler");
 const axios = require("axios");
 require("dotenv").config();
 const methodOverride = require("method-override");
@@ -103,20 +104,15 @@ app.delete(
   })
 );
 
-// app.get("/seed/place", async (req, res) => {
-//   const place = new Place({
-//     title: "Empire State Building",
-//     price: "$999999",
-//     description: "A great building",
-//     location: "New York, NY",
-//   });
-
-//   await place.save();
-//   res.send(place);
-// });
+app.all("*", (req, res, next) => {
+  next(new ErrorHandler("Page Not Found", 404));
+});
 
 app.use((err, req, res, next) => {
-  res.status(500).send("Something went wrong");
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Something went wrong";
+
+  res.status(statusCode).render("error", { err });
 });
 
 app.listen(3000, () => {
